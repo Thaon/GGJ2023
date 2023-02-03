@@ -15,8 +15,8 @@ public class PlayerInputManager : MonoBehaviour
     {
         Vector3 movement = new Vector3(
             Input.GetAxisRaw("Horizontal"),
-            0,
-            Input.GetAxisRaw("Vertical")
+            Input.GetAxisRaw("Vertical"),
+            0
             );
         _movementManager.Move(movement, _speed);
     }
