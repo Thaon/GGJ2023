@@ -8,15 +8,15 @@ public class PitchDetector : Singleton<PitchDetector>
 {
     #region member variables
 
-    public GameObject _visualizer;
-
     [DllImport("AudioPluginDemo")]
     private static extern float PitchDetectorGetFreq(int index);
 
     [DllImport("AudioPluginDemo")]
     private static extern int PitchDetectorDebug(float[] data);
 
-    private float _frequency;
+    public float _frequencyOffset;
+
+    private float _frequency = -1;
     private MicrophoneFeed _mic;
 
     #endregion
@@ -24,17 +24,15 @@ public class PitchDetector : Singleton<PitchDetector>
     private void Start()
     {
         _mic = FindObjectOfType<MicrophoneFeed>();
-        if (_visualizer)
-            _visualizer.SetActive(false);
     }
 
     void Update()
     {
         float freq = PitchDetectorGetFreq(0);
-        _frequency = freq / 50;
-
-        if (_visualizer)
-            _visualizer.transform.localPosition = new Vector3(0, freq / 50, 0);
+        if (_mic.useMicrophone)
+            _frequency = _frequencyOffset + (freq / 50);
+        else
+            _frequency = -1;
     }
 
     public float Frequency()
@@ -45,12 +43,10 @@ public class PitchDetector : Singleton<PitchDetector>
     public void StartDetecting()
     {
         _mic.useMicrophone = true;
-        _visualizer.SetActive(true);
     }
 
     public void StopDetecting()
     {
         _mic.useMicrophone = false;
-        _visualizer.SetActive(false);
     }
 }
