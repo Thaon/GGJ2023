@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc83a1a3455514f459bf6c70f50503d6, type: 3}
   m_Name: song1
   m_EditorClassIdentifier: 
-  pitches: []
-  sprites: []
+  pitches:
+  - 0
+  - 1
+  - 2
+  sprites:
+  - {fileID: 21300000, guid: f944a968a5f174169be54ae38c22818c, type: 3}
+  - {fileID: 21300000, guid: d6101c7d17e214d3eb33eabb3666d694, type: 3}
+  - {fileID: 21300000, guid: 26b2903881ee74e35ab0d2cecce20fc5, type: 3}
