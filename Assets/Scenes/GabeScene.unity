@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 464158430}
   - component: {fileID: 464158429}
   - component: {fileID: 464158431}
+  - component: {fileID: 464158432}
   m_Layer: 0
   m_Name: PitchDetectorGO
   m_TagString: Untagged
@@ -153,10 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c07d6ebb024476887bf5e551beb70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rmsVal: 0
-  dbVal: 0
-  pitchVal: 0
-  _visualIndicator: {fileID: 491483297}
+  _visualizer: {fileID: 491483297}
 --- !u!4 &464158430
 Transform:
   m_ObjectHideFlags: 0
@@ -187,7 +185,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -268,6 +266,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &464158432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464158428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3abde19fe34542bdbcb7cb80dc30662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMicrophone: 1
 --- !u!1 &491483297
 GameObject:
   m_ObjectHideFlags: 0
