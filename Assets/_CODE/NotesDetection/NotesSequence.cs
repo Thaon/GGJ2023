@@ -7,34 +7,40 @@ public class NotesSequence : MonoBehaviour
 {
     #region member variables
 
+    public float _timeBetweenNotesRecognized = 1f;
     public List<float> _sequence;
     public UnityEvent OnNoteDetected, OnSequenceComplete;
-    public GameObject _visualizer;
 
     private int _index = -1;
     private bool _detecting = false;
+    private bool _canDetect = false;
+    private float _gotNoteTimer = 0f;
 
     #endregion
 
-    private void Start()
-    {
-        if (_visualizer)
-            _visualizer.SetActive(false);
-    }
-
     void Update()
     {
-        if (_detecting)
+        if (_detecting && _canDetect)
         {
             float noteDetected = Mathf.RoundToInt(PitchDetector.Instance.Frequency()); // from 3 to 10
             float noteToHit = Mathf.RoundToInt(_sequence[_index]);
             if (noteToHit == noteDetected)
             {
-                OnNoteDetected?.Invoke();
-                print("Note Detected");
-                NextNote();
+                if (_gotNoteTimer > 1f)
+                {
+                    OnNoteDetected?.Invoke();
+                    print("Note Detected");
+                    NextNote();
+                    _gotNoteTimer = 0f;
+                }
+                else
+                {
+                    _gotNoteTimer += Time.deltaTime;
+                }
             }
+
         }
+            //_visualizer.transform.localPosition = Vector3.Lerp(_visualizer.transform.localPosition, new Vector3(0, _sequence[_index], 1), .1f);
     }
 
     public void RestartSequence()
@@ -49,11 +55,12 @@ public class NotesSequence : MonoBehaviour
         _index++;
         _detecting = true;
         print("Initiating Detection for: " + _sequence[_index]);
-        if (_visualizer)
-        {
-            _visualizer.SetActive(true);
-            _visualizer.transform.localPosition = new Vector3(0, _sequence[_index], 1);
-        }
+        _canDetect = false;
+        StartCoroutine(NextnoteActiveCO());
+
+        // notify notes card canvas
+        NoteCardsManager.Instance.ShowCardsPanel();
+        NoteCardsManager.Instance.InitCards(_sequence);
     }
 
     public void NextNote()
@@ -64,15 +71,18 @@ public class NotesSequence : MonoBehaviour
             print("Sequence Completed");
             RestartSequence();
             _detecting = false;
-            _visualizer.SetActive(false);
         }
         else
         {
             _index++;
-            if (_visualizer)
-            {
-                _visualizer.transform.localPosition = new Vector3(0, _sequence[_index], 1);
-            }
+            _canDetect = false;
+            StartCoroutine(NextnoteActiveCO());
         }
+    }
+
+    private IEnumerator NextnoteActiveCO()
+    {
+        yield return new WaitForSeconds(_timeBetweenNotesRecognized);
+        _canDetect = true;
     }
 }
