@@ -32,13 +32,13 @@ public class NoteCardsManager : Singleton<NoteCardsManager>
     public void ShowCardsPanel()
     {
         GetComponent<CanvasGroup>().DOFade(1f, .5f).From(0f);
-        transform.DOMoveY(0, .5f).From(-2f);
+        transform.DOLocalMoveY(0, .5f).From(-2f);
     }
 
     public async void HideCardsPanel()
     {
         GetComponent<CanvasGroup>().DOFade(0f, .3f).From(1f);
-        transform.DOMoveY(-2f, .3f).From(0f);
+        transform.DOLocalMoveY(-2f, .3f).From(0f);
         await Task.Delay(300);
         // clear indicator
         Destroy(_indicator);
@@ -53,7 +53,7 @@ public class NoteCardsManager : Singleton<NoteCardsManager>
         if (_cards.Count > 0)
         {
             toRemove.GetComponent<CanvasGroup>().DOFade(0f, .5f).From(1f);
-            toRemove.transform.DOMoveY(4f, .5f).From(0f);
+            toRemove.transform.DOLocalMoveY(4f, .5f).From(0f);
         }
         _cards.RemoveAt(0);
         if (_cards.Count > 0)
@@ -62,7 +62,7 @@ public class NoteCardsManager : Singleton<NoteCardsManager>
             {
                 GameObject go = _cards[i];
 
-                go.transform.DOMoveX(go.transform.localPosition.x - 1.5f, .3f);
+                go.transform.DOLocalMoveX(go.transform.localPosition.x - 1.5f, .3f);
                 go.GetComponent<CanvasGroup>().DOFade(1f - (i / 3f), .5f);
             };
         }
@@ -85,7 +85,7 @@ public class NoteCardsManager : Singleton<NoteCardsManager>
             GameObject go = Instantiate(_cardPrefab, transform);
             go.transform.localPosition = new Vector3((i * 1.5f) - 1.5f, 0, 0);
             go.GetComponent<CanvasGroup>().DOFade(1f - (i / 3f), .5f).From(0f);
-            go.transform.DOMoveY(0, .5f).From(-2f);
+            go.transform.DOLocalMoveY(0, .5f).From(-2f);
 
             _cards.Add(go);
 
