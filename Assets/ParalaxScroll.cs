@@ -14,10 +14,10 @@ public class ParalaxScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(scrollSpeed * Time.deltaTime, 0, 0, Space.World);
-        if(transform.position.x > 15)
+        transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+        if(transform.localPosition.x > 8.5)
         {
-            transform.position = new Vector3(0, 0, 0);
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
         }
     }
 }
