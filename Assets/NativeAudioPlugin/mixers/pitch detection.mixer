@@ -28,6 +28,7 @@ AudioMixerGroupController:
   m_Pitch: 4b28d4ef7e55d4341b3eb8be8bb493e2
   m_Send: 00000000000000000000000000000000
   m_Effects:
+  - {fileID: 610937232927636703}
   - {fileID: -4299285853096714022}
   m_UserColorIndex: 0
   m_Mute: 0
@@ -48,9 +49,7 @@ AudioMixerController:
   m_SuspendThreshold: 20
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters:
-  - guid: 76ae7e9e86dbd4d1494392bb12d33ccd
-    name: Monitor
+  m_ExposedParameters: []
   m_AudioMixerGroupViews:
   - guids:
     - 2cd4cb191470342baaa6d9d2cca935aa
@@ -73,7 +72,6 @@ AudioMixerGroupController:
   m_Pitch: b5eff784d7fc146158088f1c93d0bb52
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: 24436232}
   - {fileID: 24400002}
   m_UserColorIndex: 0
   m_Mute: 0
@@ -93,36 +91,6 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
---- !u!244 &24436232
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 94f44b8f9863f4805bc46c3cb4a65c5c
-  m_EffectName: Demo PitchDetector
-  m_MixLevel: 9019d8ca3e697405f8c6c7267bb20a7c
-  m_Parameters:
-  - m_ParameterName: Index
-    m_GUID: 73776a61afc5742348df1c52740f1e30
-  - m_ParameterName: Low Cut
-    m_GUID: 6d66beba6094f4391b7275fef2c90e35
-  - m_ParameterName: High Cut
-    m_GUID: 862694e24a22747d4af578a3a64276c5
-  - m_ParameterName: Low Bin
-    m_GUID: 27fcd01b37b0f4a52bae4dae43a31645
-  - m_ParameterName: High Bin
-    m_GUID: 66d4515b1e95240c58175896d6879e52
-  - m_ParameterName: Threshold
-    m_GUID: d7a04191ab82549ebb58288edc9c6dcf
-  - m_ParameterName: Osc Pitch
-    m_GUID: b04af566c999c494980fa2d60393d312
-  - m_ParameterName: Monitor
-    m_GUID: 76ae7e9e86dbd4d1494392bb12d33ccd
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!245 &24500003
 AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
@@ -134,6 +102,8 @@ AudioMixerSnapshotController:
   m_SnapshotID: 91d058c10408f497fa7420f3b9c38fe4
   m_FloatValues:
     8c113d400e4a647f29ac19578dadb4b0: 0.439
+    3443a2311d22f4f0bb5f8f5a422f2058: 0
+    a2146ae620c174fdba2db07e94c6dffa: -80
     24df80675828048abb722daa902d42bb: 0.05
     31b26ca9ea9f54171b7196dcb3337188: 1000
     dd77cefada5204daab268c01e043398e: -2.5738313
@@ -142,3 +112,33 @@ AudioMixerSnapshotController:
     bb73014d780ce4b1dbbea1b3fe22e307: 50
     76ae7e9e86dbd4d1494392bb12d33ccd: 0
   m_TransitionOverrides: {}
+--- !u!244 &610937232927636703
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 35569018861cf4924a58d0396331780b
+  m_EffectName: Demo PitchDetector
+  m_MixLevel: c37d07f6a286542adb28171c95d029d2
+  m_Parameters:
+  - m_ParameterName: Index
+    m_GUID: ccb23a47c3de44a888cefdccf72f9329
+  - m_ParameterName: Low Cut
+    m_GUID: 6a69df7862dd34d54b456205e6e998ae
+  - m_ParameterName: High Cut
+    m_GUID: d1d9874ace62140ffbc35b0a6cc9dddd
+  - m_ParameterName: Low Bin
+    m_GUID: 2a36a5f426076421cadec0bc08f540e3
+  - m_ParameterName: High Bin
+    m_GUID: 8292fae2b8e2b47cf958ff4a3875e5b3
+  - m_ParameterName: Threshold
+    m_GUID: 83c9ffd9747e64cf497378e54b3a7af4
+  - m_ParameterName: Osc Pitch
+    m_GUID: 88398ada2f5624affb0780ac5612a9e0
+  - m_ParameterName: Monitor
+    m_GUID: 3443a2311d22f4f0bb5f8f5a422f2058
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
