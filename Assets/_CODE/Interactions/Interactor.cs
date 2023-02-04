@@ -9,6 +9,7 @@ public class Interactor : MonoBehaviour
 
     public KeyCode _interactKey;
     public float _interactDistanceCheck;
+    public Vector3 offset = new Vector3(0,0,0);
 
     #endregion
 
@@ -28,7 +29,7 @@ public class Interactor : MonoBehaviour
         float minDistance = _interactDistanceCheck;
         interactables.ForEach(i =>
         {
-            float distance = Vector3.Distance(transform.position, i.transform.position);
+            float distance = Vector3.Distance(transform.position + offset, i.transform.position);
             if (distance < minDistance)
             {
                 final = i;
@@ -41,6 +42,6 @@ public class Interactor : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, _interactDistanceCheck);
+        Gizmos.DrawWireSphere(transform.position + offset, _interactDistanceCheck);
     }
 }
