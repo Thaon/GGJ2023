@@ -18,7 +18,7 @@ public class AnimationManager : MonoBehaviour
         bool stationary = moveDirection.x == 0 && moveDirection.y == 0;
         animator.SetBool("stationary", stationary);
         if(!stationary){
-            Debug.Log("X: " + moveDirection.x + " Y: " + moveDirection.y);
+            //Debug.Log("X: " + moveDirection.x + " Y: " + moveDirection.y);
             animator.SetFloat("X", moveDirection.x);
             animator.SetFloat("Y", moveDirection.y);
         }

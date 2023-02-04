@@ -144,15 +144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100024245758120617, guid: 0d342b20de4fa41169c3f0645a08f2dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35
+      value: 4.12
       objectReference: {fileID: 0}
     - target: {fileID: 100024245758120617, guid: 0d342b20de4fa41169c3f0645a08f2dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.49
+      value: -4.56
       objectReference: {fileID: 0}
     - target: {fileID: 100024245758120617, guid: 0d342b20de4fa41169c3f0645a08f2dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 100024245758120617, guid: 0d342b20de4fa41169c3f0645a08f2dd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f847001ec29e74a2f8ef02969f44a16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerDistance: 0
+  _triggerDistance: 6
   OnTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -799,8 +799,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1518419749}
-  selectedCommands:
-  - {fileID: 1518419748}
+  selectedCommands: []
   variables: []
   description: NotePickupFlowchart
   stepPause: 0
