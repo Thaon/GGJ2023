@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/ScriptableObjects.meta
 guid: 36049af1c6b2b43ddbc9ae1725ebf103
+=======
+guid: 76e34bd0cac1ce945b3b7d41fdac0a3b
+>>>>>>> a2aabd33b157804269a8acd855a2a5156b31a7ed:Assets/Sprites/Other/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
