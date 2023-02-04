@@ -1,173 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-class Peak
-{
-    public float amplitude;
-    public int index;
-
-    public Peak()
-    {
-        amplitude = 0f;
-        index = -1;
-    }
-
-    public Peak(float _frequency, int _index)
-    {
-        amplitude = _frequency;
-        index = _index;
-    }
-}
-
-class AmpComparer : IComparer<Peak>
-{
-    public int Compare(Peak a, Peak b)
-    {
-        return 0 - a.amplitude.CompareTo(b.amplitude);
-    }
-}
-
-class IndexComparer : IComparer<Peak>
-{
-    public int Compare(Peak a, Peak b)
-    {
-        return a.index.CompareTo(b.index);
-    }
-}
+using System.Runtime.InteropServices;
 
 [RequireComponent(typeof(AudioSource))]
-public class PitchDetector : MonoBehaviour
+public class PitchDetector : Singleton<PitchDetector>
 {
     #region member variables
 
-    public float rmsVal;
-    public float dbVal;
-    public float pitchVal;
-    public GameObject _visualIndicator;
+    public GameObject _visualizer;
 
-    private const int QSamples = 1024;
-    private const float RefValue = 0.1f;
-    private const float Threshold = 0.02f;
+    [DllImport("AudioPluginDemo")]
+    private static extern float PitchDetectorGetFreq(int index);
 
-    private List<Peak> peaks = new List<Peak>();
-    float[] _samples;
-    private float[] _spectrum;
-    private string _micName;
-    private AudioSource _audioSource;
-    private float _previousPitchVal = 0f;
+    [DllImport("AudioPluginDemo")]
+    private static extern int PitchDetectorDebug(float[] data);
+
+    private float _frequency;
+    private MicrophoneFeed _mic;
 
     #endregion
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-        StartCoroutine(RecordMic());
-    }
-
-    private IEnumerator RecordMic()
-    {
-        Initialize();
-        yield return new WaitForSeconds(10f);
-        StartCoroutine(RecordMic());
-    }
-
-    void Initialize()
-    {
-        Microphone.End(_micName);
-
-        _samples = new float[QSamples];
-        _spectrum = new float[QSamples];
-
-        string micName = "";
-        foreach (string device in Microphone.devices)
-        {
-            if (device.Length > 0)
-            {
-                micName = device;
-                break;
-            }
-        }
-        _micName = micName;
-
-        _audioSource.clip = Microphone.Start(_micName, true, 10, 44100);
-        _audioSource.loop = true;
-        while (!(Microphone.GetPosition(null) > 0)) { }
-        _audioSource.Play();
+        _mic = FindObjectOfType<MicrophoneFeed>();
+        if (_visualizer)
+            _visualizer.SetActive(false);
     }
 
     void Update()
     {
-        if (_micName.Length > 0) AnalyzeSound();
+        float freq = PitchDetectorGetFreq(0);
+        _frequency = freq / 50;
 
-        //Debug.Log("RMS: " + rmsVal.ToString("F2"));
-        //Debug.Log(dbVal.ToString("F1") + " dB");
-        //Debug.Log(pitchVal.ToString("F0") + " Hz");
+        if (_visualizer)
+            _visualizer.transform.localPosition = new Vector3(0, freq / 50, 0);
     }
 
-    void AnalyzeSound()
+    public float Frequency()
     {
-        _audioSource.GetOutputData(_samples, 0); // fill array with samples
-        int i;
-        float sum = 0;
-        for (i = 0; i < QSamples; i++)
-        {
-            sum += _samples[i] * _samples[i]; // sum squared samples
-        }
-        rmsVal = Mathf.Sqrt(sum / QSamples); // rms = square root of average
-        dbVal = 20 * Mathf.Log10(rmsVal / RefValue); // calculate dB
-        if (dbVal < -160) dbVal = -160; // clamp it to -160dB min
-        // get sound spectrum
-        _audioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
-        float maxV = 0;
-        for (i = 0; i < QSamples; i++)
-        { // find max 
-            if (!(_spectrum[i] > maxV) || !(_spectrum[i] > Threshold))
-            {
-                peaks.Add(new Peak(_spectrum[i], i));
-                if (peaks.Count > 5)
-                { // get the 5 peaks in the sample with the highest amplitudes
-                    peaks.Sort(new AmpComparer()); // sort peak amplitudes from highest to lowest
-                    //peaks.Remove (peaks [5]); // remove peak with the lowest amplitude
-                }
-            }
-        }
-        float freqN = 0f;
-        if (peaks.Count > 0)
-        {
-            //peaks.Sort (new IndexComparer ()); // sort indices in ascending order
-            maxV = peaks[0].amplitude;
-            int maxN = peaks[0].index;
-            freqN = maxN; // pass the index to a float variable
-            if (maxN > 0 && maxN < QSamples - 1)
-            { // interpolate index using neighbours
-                var dL = _spectrum[maxN - 1] / _spectrum[maxN];
-                var dR = _spectrum[maxN + 1] / _spectrum[maxN];
-                freqN += 0.5f * (dR * dR - dL * dL);
-            }
-        }
-
-        //maxV = _spectrum[i];
-        //maxN = i; // maxN is the index of max
-        //float freqN = maxN; // pass the index to a float variable
-        //if (maxN > 0 && maxN < QSamples - 1)
-        //{ // interpolate index using neighbours
-        //    var dL = _spectrum[maxN - 1] / _spectrum[maxN];
-        //    var dR = _spectrum[maxN + 1] / _spectrum[maxN];
-        //    freqN += 0.5f * (dR * dR - dL * dL);
-        //}
-        pitchVal = freqN * (AudioSettings.outputSampleRate / 2f) / QSamples;
-            //Mathf.SmoothStep(_previousPitchVal, freqN * (AudioSettings.outputSampleRate / 2f) / QSamples, .1f); // convert index to frequency
-        _previousPitchVal = pitchVal;
-        if (_visualIndicator)
-        {
-            _visualIndicator.transform.localPosition = new Vector3(0, pitchVal / 80, 0);
-        }
-        peaks.Clear();
+        return _frequency;
     }
 
-    private void OnDestroy()
+    public void StartDetecting()
     {
-        Microphone.End(_micName);
+        _mic.useMicrophone = true;
+        _visualizer.SetActive(true);
+    }
+
+    public void StopDetecting()
+    {
+        _mic.useMicrophone = false;
+        _visualizer.SetActive(false);
     }
 }
