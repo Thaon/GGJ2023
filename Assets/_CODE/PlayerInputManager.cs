@@ -8,6 +8,7 @@ public class PlayerInputManager : MonoBehaviour
 
     public float _speed;
     public MovementManager _movementManager;
+    public AnimationManager _animationManager;
 
     #endregion
 
@@ -19,5 +20,8 @@ public class PlayerInputManager : MonoBehaviour
             0
             );
         _movementManager.Move(movement, _speed);
+        if(_animationManager){
+            _animationManager.SetMovement(movement);
+        }
     }
 }
