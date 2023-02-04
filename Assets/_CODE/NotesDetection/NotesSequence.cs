@@ -38,9 +38,14 @@ public class NotesSequence : MonoBehaviour
                     _gotNoteTimer += Time.deltaTime;
                 }
             }
-
+            else
+            {
+                _gotNoteTimer -= Time.deltaTime;
+                _gotNoteTimer = Mathf.Clamp01(_gotNoteTimer);
+            }
+            NoteCardsManager.Instance.UpdateTargetComplation(_gotNoteTimer);
         }
-            //_visualizer.transform.localPosition = Vector3.Lerp(_visualizer.transform.localPosition, new Vector3(0, _sequence[_index], 1), .1f);
+        //_visualizer.transform.localPosition = Vector3.Lerp(_visualizer.transform.localPosition, new Vector3(0, _sequence[_index], 1), .1f);
     }
 
     public void RestartSequence()
@@ -54,7 +59,7 @@ public class NotesSequence : MonoBehaviour
         PitchDetector.Instance.StartDetecting();
         _index++;
         _detecting = true;
-        print("Initiating Detection for: " + _sequence[_index]);
+        print("Initiating Detection for: " + (_sequence[_index]));
         _canDetect = false;
         StartCoroutine(NextnoteActiveCO());
 
@@ -71,12 +76,15 @@ public class NotesSequence : MonoBehaviour
             print("Sequence Completed");
             RestartSequence();
             _detecting = false;
+            NoteCardsManager.Instance.HideCardsPanel();
         }
         else
         {
             _index++;
+            print("Initiating Detection for: " + (_sequence[_index]));
             _canDetect = false;
             StartCoroutine(NextnoteActiveCO());
+            NoteCardsManager.Instance.HideFirstCard();
         }
     }
 

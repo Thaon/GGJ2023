@@ -14,7 +14,9 @@ public class PitchDetector : Singleton<PitchDetector>
     [DllImport("AudioPluginDemo")]
     private static extern int PitchDetectorDebug(float[] data);
 
-    private float _frequency;
+    public float _frequencyOffset;
+
+    private float _frequency = -1;
     private MicrophoneFeed _mic;
 
     #endregion
@@ -27,9 +29,10 @@ public class PitchDetector : Singleton<PitchDetector>
     void Update()
     {
         float freq = PitchDetectorGetFreq(0);
-        _frequency = freq / 50;
-
-            //_visualizer.transform.localPosition = Vector3.Lerp(_visualizer.transform.localPosition, new Vector3(0, freq / 50, 0), .1f);
+        if (_mic.useMicrophone)
+            _frequency = _frequencyOffset + (freq / 50);
+        else
+            _frequency = -1;
     }
 
     public float Frequency()
