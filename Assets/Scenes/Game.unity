@@ -7629,7 +7629,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 54.3983
+  MaxDistance: 66.95091
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -13809,7 +13809,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 54.3983
+  MaxDistance: 65.88712
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -25961,7 +25961,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 54.3983
+  MaxDistance: 63.972332
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -26415,7 +26415,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 54.3983
+  MaxDistance: 58.653423
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
