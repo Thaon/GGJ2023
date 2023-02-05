@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -23,5 +25,10 @@ public class PlayerInputManager : MonoBehaviour
         if(_animationManager){
             _animationManager.SetMovement(movement);
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
