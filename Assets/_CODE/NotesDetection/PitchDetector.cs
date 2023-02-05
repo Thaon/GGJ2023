@@ -33,6 +33,7 @@ public class PitchDetector : Singleton<PitchDetector>
             _frequency = _frequencyOffset + (freq / 50);
         else
             _frequency = -1;
+        
     }
 
     public float Frequency()
