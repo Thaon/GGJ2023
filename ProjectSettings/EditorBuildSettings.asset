@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GabeScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/LevelSketching.unity
+    guid: 141d690db06a49d43ad4ec19890af7b6
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: ce36d57cb9f4a4852982a0ee82fa6309
   m_configObjects: {}

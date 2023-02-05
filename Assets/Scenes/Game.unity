@@ -325,6 +325,17 @@ Transform:
   m_Father: {fileID: 1557946843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33923188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164893491599208383, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
+  m_PrefabInstance: {fileID: 436952252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &41192789
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +427,7 @@ MonoBehaviour:
   OnTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1492666787}
+      - m_Target: {fileID: 33923188}
         m_TargetAssemblyTypeName: Fungus.Flowchart, Fungus
         m_MethodName: ExecuteBlock
         m_Mode: 5
@@ -6378,40 +6389,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 159609751}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[1]
       value: 
-      objectReference: {fileID: 159609751}
+      objectReference: {fileID: 159609749}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[2]
       value: 
-      objectReference: {fileID: 159609749}
+      objectReference: {fileID: 159609748}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[3]
       value: 
-      objectReference: {fileID: 159609748}
+      objectReference: {fileID: 159609747}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[4]
       value: 
-      objectReference: {fileID: 159609747}
+      objectReference: {fileID: 159609745}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[5]
       value: 
-      objectReference: {fileID: 159609745}
+      objectReference: {fileID: 159609746}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[6]
       value: 
-      objectReference: {fileID: 159609746}
+      objectReference: {fileID: 159609744}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[7]
       value: 
-      objectReference: {fileID: 159609744}
+      objectReference: {fileID: 159609742}
     - target: {fileID: 1287033012536544829, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
       propertyPath: commandList.Array.data[8]
       value: 
@@ -7653,7 +7664,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -13833,7 +13844,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -16303,17 +16314,12 @@ MonoBehaviour:
           m_StringArgument: dialogue
           m_BoolArgument: 1
         m_CallState: 2
---- !u!1 &1492666779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6760773667754638980, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
-  m_PrefabInstance: {fileID: 436952252}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1492666787 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1516633985896601320, guid: 98a26c7c86494434cbd8eb4907b98568, type: 3}
   m_PrefabInstance: {fileID: 436952252}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492666779}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
@@ -22251,6 +22257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 8
+  resetDist: 8.5
 --- !u!212 &1689868887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22956,6 +22963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 3
+  resetDist: 8.5
 --- !u!212 &1766483462
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24885,7 +24893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1782333582}
+  selectedFlowchart: {fileID: 1492666787}
 --- !u!4 &1990077911
 Transform:
   m_ObjectHideFlags: 1
@@ -25988,7 +25996,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -26343,9 +26351,9 @@ MonoBehaviour:
   OnTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1492666779}
+      - m_Target: {fileID: 1492666787}
         m_TargetAssemblyTypeName: Fungus.Flowchart, Fungus
-        m_MethodName: 
+        m_MethodName: ExecuteBlock
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26442,7 +26450,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -26841,6 +26849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 5
+  resetDist: 8.5
 --- !u!212 &2138509832
 SpriteRenderer:
   m_ObjectHideFlags: 0
